@@ -1,0 +1,42 @@
+/*4페이지*/
+.container4 {
+	width: 100%;
+	height: 100vh;
+	background-color: white;
+	background-position: center;
+	background-size: cover;
+}
+
+.container4 .box4-1{
+	position: absolute;
+	width: 750px;
+	height: 520px;
+	background: #F9F9F9;
+	margin-top: 50px;
+	margin-left: 650px;
+	margin-bottom: 80px;
+	padding-top: 80px;
+	border-radius: 10px;
+	text-align: center;
+}
+.container4 .hero4 h2 {
+	font-size: 24px;
+	color: #263346;
+	margin-bottom: 20px;
+}
+.container4 .hero4 p {
+	font-size: 20px;
+	color: #263346;
+	margin-top: 50px;
+	margin-left: 30px;
+	margin-right: 30px;
+	text-align: justify;
+}
+.container4 .hero4 canvas {
+	margin-top: 100pxpx;
+	margin-left: 120px;
+}
+.container4 .hero4 #canvas2 {
+	margin-top: 120px;
+	margin-left: 260px;
+}

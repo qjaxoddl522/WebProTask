@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quiz</title>
+</head>
+<script>
+var timerID = null;
+var countDownStart = 16;
+var countDown = countDownStart;
+
+var quiz = new Array(3);
+var answer = new Array(quiz.length);
+quiz[0] = "기존의 데이터센터에서 제공받던 물리적인 자산을 완벽하게 가상화하여 제공하는 서비스로 서버 사양의 변경 등 물리적 자산의 수정이 필요한 경우 기존의 방식에 비해 훨씬 빠른 대응이 가능한 형태의 서비스는? (보기: IaaS, PaaS, SaaS)";
+quiz[1] = "프로세스와 관련된 인프라 또는 플랫폼을 구축하고 유지관리할 필요 없이 자체 애플리케이션을 개발, 실행 및 관리 할 수 있도록 해주는 형태의 서비스는? (보기: IaaS, PaaS, SaaS)";
+quiz[2] = "개별 컴퓨터에 응용 프로그램을 다운로드하고 설치할 필요가 없으며, 서비스를 공급하는 기업은 데이터, 미들웨어, 서버 및 스토리지와 같은 모든 잠재적인 기술적 문제를 관리해주는 형태의 서비스는? (보기: IaaS, PaaS, SaaS)";
+	
+answer[0] = "IaaS";
+answer[1] = "PaaS";
+answer[2] = "SaaS";
+
+function startTimer(){
+	var clock = document.getElementById("clock");
+	countDown = countDownStart;
+	if (timerID!=null)
+		clearTimeout(timerID);
+	timeout(clock);
+}
+function timeout(obj){
+	countDown--;
+	obj.innerHTML = "남은 시간: "+countDown;
+	if (countDown == 0)
+		result();
+	else
+		timerID = setTimeout("timeout(clock)",1000);
+}
+function button(){
+	var button = document.getElementById("button");
+	if (button.innerHTML == "확인")
+		result();
+	else{
+		makeQuiz();
+		startTimer();
+	}
+}
+function result(){
+	clearTimeout(timerID);
+
+	var q = document.getElementById("question");
+	var userAnswer = document.getElementById("answer").value;
+	var res = document.getElementById("result");
+
+	if (answer.indexOf(userAnswer) == quiz.indexOf(q.innerHTML)){
+		res.innerHTML = "결과: 정답!";
+	}
+	else{
+		res.innerHTML = "결과: 오답. 정답은 "+answer[quiz.indexOf(q.innerHTML)];
+	}
+
+	var button = document.getElementById("button");
+	button.innerHTML = "다시";
+}
+function makeQuiz(){
+	var q = document.getElementById("question");
+	var a = document.getElementById("answer");
+	var res = document.getElementById("result");
+
+	q.innerHTML = quiz[Math.floor(Math.random()*quiz.length)];
+	a.value = "";
+	res.innerHTML = "결과: ";
+
+	var button = document.getElementById("button");
+	button.innerHTML = "확인";
+}
+</script>
+<body onload="makeQuiz();startTimer()">
+<h3>클라우드 컴퓨팅 Quiz</h3>
+클라우드 컴퓨팅에 관련된 문제를 풀어 봅시다. 제한 시간 안에 입력하고 확인하세요.
+<hr>
+<a id="question"></a><br><input id="answer" type="text" size="20">
+&nbsp;<button id="button" onclick="button()">확인</button><br>
+<span id="clock">남은 시간: </span><br>
+<span id="result">결과: </span>
+</body>
+</html>
